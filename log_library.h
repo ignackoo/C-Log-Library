@@ -14,17 +14,17 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-    void LogTrace(int x, FILE* pfile, int eventid, char* pmessage);
+    void LogTrace(int x, FILE* pfile, int eventid, const char* fmt, ...);
 
-    void LogDebug(int x, FILE* pfile, int eventid, char* pmessage);
+    void LogDebug(int x, FILE* pfile, int eventid, const char* fmt, ...);
 
-    void LogInfo(int x, FILE* pfile, int eventid, char* pmessage);
+    void LogInfo(int x, FILE* pfile, int eventid, const char* fmt, ...);
 
-    void LogWarning(int x, FILE* pfile, int eventid, char* pmessage);
+    void LogWarning(int x, FILE* pfile, int eventid, const char* fmt, ...);
 
-    void LogError(int x, FILE* pfile, int eventid, char* pmessage);
+    void LogError(int x, FILE* pfile, int eventid, const char* fmt, ...);
 
-    void LogCritical(int x, FILE* pfile, int eventid, char* pmessage);
+    void LogCritical(int x, FILE* pfile, int eventid, const char* fmt, ...);
 #ifdef __cplusplus
 }
 #endif

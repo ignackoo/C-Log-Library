@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdarg.h>
 #include <time.h>
 
 #include "log_library.h"
@@ -12,7 +13,7 @@
 #define TYPE_CRITICAL   32
 
 
-void Log_Message(FILE *pfile, int messagetype, int eventid, char* pmessage)
+void _Log_Header(FILE *pfile, int eventid, int messagetype)
 {
     time_t t;
     struct tm stm;
@@ -41,47 +42,89 @@ void Log_Message(FILE *pfile, int messagetype, int eventid, char* pmessage)
     else if (messagetype == TYPE_ERROR)    fprintf(pfile, "   ERROR ");
     else /* TYPE_CRITICAL */               fprintf(pfile, "CRITICAL ");
 
-    /* message */
-    fprintf(pfile, "%s", pmessage);
-
-    /* cr lf */
-    fprintf(pfile, "%s", "\n\r");
-
     return;
 }
 
-void LogTrace(int x, FILE* pfile, int eventid, char* pmessage)
+void LogTrace(int x, FILE* pfile, int eventid, const char* fmt, ...)
 {
-    if (x) Log_Message(pfile, TYPE_TRACE, eventid, pmessage);
+    va_list args;
+    if (x)
+    {
+        va_start(args, fmt);
+        _Log_Header(pfile, eventid, TYPE_TRACE);
+        vfprintf(pfile, fmt, args);
+        fprintf(pfile, "\n\r");
+        va_end(args);
+    }
     return;
 }
 
-void LogDebug(int x, FILE* pfile, int eventid, char* pmessage)
+void LogDebug(int x, FILE* pfile, int eventid, const char* fmt, ...)
 {
-    if (x) Log_Message(pfile, TYPE_DEBUG, eventid, pmessage);
+    va_list args;
+    if (x)
+    {
+        va_start(args, fmt);
+        _Log_Header(pfile, eventid, TYPE_DEBUG);
+        vfprintf(pfile, fmt, args);
+        fprintf(pfile, "\n\r");
+        va_end(args);
+    }
     return;
 }
 
-void LogInfo(int x, FILE* pfile, int eventid, char* pmessage)
+void LogInfo(int x, FILE* pfile, int eventid, const char* fmt, ...)
 {
-    if (x) Log_Message(pfile, TYPE_INFO, eventid, pmessage);
+    va_list args;
+    if (x)
+    {
+        va_start(args, fmt);
+        _Log_Header(pfile, eventid, TYPE_INFO);
+        vfprintf(pfile, fmt, args);
+        fprintf(pfile, "\n\r");
+        va_end(args);
+    }
     return;
 }
 
-void LogWarning(int x, FILE* pfile, int eventid, char* pmessage)
+void LogWarning(int x, FILE* pfile, int eventid, const char* fmt, ...)
 {
-    if (x) Log_Message(pfile, TYPE_WARNING, eventid, pmessage);
+    va_list args;
+    if (x)
+    {
+        va_start(args, fmt);
+        _Log_Header(pfile, eventid, TYPE_WARNING);
+        vfprintf(pfile, fmt, args);
+        fprintf(pfile, "\n\r");
+        va_end(args);
+    }
     return;
 }
 
-void LogError(int x, FILE* pfile, int eventid, char* pmessage)
+void LogError(int x, FILE* pfile, int eventid, const char* fmt, ...)
 {
-    if (x) Log_Message(pfile, TYPE_ERROR, eventid, pmessage);
+    va_list args;
+    if (x)
+    {
+        va_start(args, fmt);
+        _Log_Header(pfile, eventid, TYPE_ERROR);
+        vfprintf(pfile, fmt, args);
+        fprintf(pfile, "\n\r");
+        va_end(args);
+    }
     return;
 }
 
-void LogCritical(int x, FILE* pfile, int eventid, char* pmessage)
+void LogCritical(int x, FILE* pfile, int eventid, const char* fmt, ...)
 {
-    if (x) Log_Message(pfile, TYPE_CRITICAL, eventid, pmessage);
+    va_list args;
+    if (x)
+    {
+        va_start(args, fmt);
+        _Log_Header(pfile, eventid, TYPE_CRITICAL);
+        vfprintf(pfile, fmt, args);
+        fprintf(pfile, "\n\r");
+        va_end(args);
+    }
     return;
 }
