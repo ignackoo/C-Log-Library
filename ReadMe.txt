@@ -17,3 +17,5 @@ YYYY-MM-DD HH:MM:SS XXXXXXXX     INFO message to log.\n\r
 YYYY-MM-DD HH:MM:SS XXXXXXXX  WARNING message to log.\n\r
 YYYY-MM-DD HH:MM:SS XXXXXXXX    ERROR message to log.\n\r
 YYYY-MM-DD HH:MM:SS XXXXXXXX CRITICAL message to log.\n\r
+
+please give me some star if you will see that the library is useful, thank you
